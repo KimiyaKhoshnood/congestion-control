@@ -19,3 +19,15 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.custom-transparent-table .ant-table,
+.custom-transparent-table .ant-table-container,
+.custom-transparent-table .ant-table-content {
+  background-color: transparent !important; 
+}
+
+.custom-transparent-table .ant-table-tbody > tr > td {
+  background-color: transparent !important; 
+}
+
+

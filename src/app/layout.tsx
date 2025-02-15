@@ -1,6 +1,16 @@
+import '@ant-design/v5-patch-for-react-19'; 
+import 'antd/dist/reset.css';
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+
+const originalWarn = console.warn;
+console.warn = (...args) => {
+  if (typeof args[0] === 'string' && args[0].includes('[antd: compatible]')) {
+    return; // هشدار antd رو نادیده بگیر
+  }
+  originalWarn(...args); // بقیه هشدارها رو نمایش بده
+};
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,9 +35,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        dir="rtl"
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[url('/BackGround.png')] bg-no-repeat bg-contain bg-center h-screen`}
       >
+        <div className="bg-[#E1E1E1]/70 h-screen">
         {children}
+        </div>
       </body>
     </html>
   );
